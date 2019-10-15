@@ -7,7 +7,8 @@ const app = express();
 const PORT = 80;
 const WORDS = JSON.parse(fs.readFileSync('words.json'))
 
-app.use(express.static('videos'))
+app.use(express.static('videos'));
+app.use(express.static('imgs'));
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname + '/index.html'));
