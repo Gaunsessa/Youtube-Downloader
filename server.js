@@ -4,7 +4,7 @@ const path = require('path');
 const fs = require('fs');
 
 const app = express();
-const PORT = 80;
+const PORT = 1273;
 const WORDS = JSON.parse(fs.readFileSync('words.json'))
 
 app.use(express.static('videos'));
