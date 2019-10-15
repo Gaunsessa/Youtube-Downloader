@@ -29,7 +29,7 @@
     <center>
         <form action="/post">
             <input type="text" name="url" id="urlInp">
-            <input type="submit" value="submit">
+            <input type="submit" value="submit" onclick="document.body.style.backgroundImage = 'url(\'/loading.gif\')';document.getElementById('header').innerText = 'DOWNLOADING'">
         </form>
     </center>
 </body>
