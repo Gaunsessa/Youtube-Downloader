@@ -1,5 +1,6 @@
 const express = require('express');
 const youtubedl = require('youtube-dl');
+const ffmpeg = require('fluent-ffmpeg');
 const path = require('path');
 const fs = require('fs');
 
@@ -15,7 +16,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/post', (req, res) => {
-    if ('url' in req.query && /https?:\/\/\S+\.\S+/.test(req.query['url'])) {
+    if ('url' in req.query && req.query['format'] === 'mp3' && /https?:\/\/\S+\.\S+/.test(req.query['url'])) {
         var video = youtubedl(req.query['url']);
         var name = getFileName();
 
@@ -29,7 +30,11 @@ app.get('/post', (req, res) => {
             });
 
             video.on('end', function() {
-                res.send(`<script>window.open('/${name}${ext}', '_self')</script>`);
+                if (req.query['format'] === 'mp3') {
+                    ffmpeg(`videos/${name}${ext}`).on('end', function() {res.send(`<script>window.open('/${name}.mp3', '_self')</script>`);}).saveToFile(`videos/${name}.mp3`);
+                } else {
+                    res.send(`<script>window.open('/${name}${ext}', '_self')</script>`);
+                }
             });
         });
         

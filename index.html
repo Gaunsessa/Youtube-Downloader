@@ -29,6 +29,10 @@
     <center>
         <form action="/post">
             <input type="text" name="url" id="urlInp">
+            <select name="format" id="format">
+                <option value="default">default</option>
+                <option value="mp3">mp3</option>
+            </select>
             <input type="submit" value="submit" onclick="document.body.style.backgroundImage = 'url(\'/loading.gif\')';document.getElementById('header').innerText = 'DOWNLOADING'">
         </form>
     </center>
