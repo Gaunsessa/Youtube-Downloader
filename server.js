@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/post', (req, res) => {
-    if ('url' in req.query && req.query['format'] === 'mp3' && /https?:\/\/\S+\.\S+/.test(req.query['url'])) {
+    if ('url' in req.query && 'format' in req.query && /https?:\/\/\S+\.\S+/.test(req.query['url'])) {
         var video = youtubedl(req.query['url']);
         var name = getFileName();
 
@@ -37,7 +37,6 @@ app.get('/post', (req, res) => {
                 }
             });
         });
-        
     } else {
         res.send(`<script>alert('INVALID STUFF COME ON MAN YOU NERD')</script>`);
     }
