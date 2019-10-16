@@ -19,15 +19,20 @@ app.get('/post', (req, res) => {
         var video = youtubedl(req.query['url']);
         var name = getFileName();
 
-        video.pipe(fs.createWriteStream(path.join('videos/' + name + '.mp4')));
+        youtubedl.getInfo(req.query['url'], [], function(err, info) {
+            var ext = info._filename.match(/\.[0-9a-z]+$/i)[0];
 
-        video.on('error', function(err) {
-            res.send(`<script>alert('THERE IS A ERROR NERD')</script>`);
-        });
+            video.pipe(fs.createWriteStream(path.join('videos/' + name + ext)));
 
-        video.on('end', function() {
-            res.send(`<script>window.open('/${name}.mp4', '_self')</script>`);
+            video.on('error', function(err) {
+                res.send(`<script>alert('THERE IS A ERROR NERD')</script>`);
+            });
+
+            video.on('end', function() {
+                res.send(`<script>window.open('/${name}${ext}', '_self')</script>`);
+            });
         });
+        
     } else {
         res.send(`<script>alert('INVALID STUFF COME ON MAN YOU NERD')</script>`);
     }
