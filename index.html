@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/main.js"></script>
-    <title>Downloader</title>
+    <title>&#60;DOWNLOADER&#62;</title>
 </head>
 <body>
-    <h1 id="header">&#60;DOWNLOADER&&#62;</h1>
+    <h1 id="header">&#60;DOWNLOADER&#62;</h1>
     <center>
         <form action="/post">
             <input type="text" name="url" id="urlInp" placeholder="Enter Url">
@@ -17,8 +17,9 @@
                 <option value="mp3">mp3</option>
             </select>
             <br>
-            <input type="submit" value="submit" id="submitBox" onclick="document.body.style.backgroundImage = 'url(\'/imgs/loading.gif\')';document.getElementById('header').innerText = 'DOWNLOADING'">
+            <input type="submit" value="submit" id="submitBox" onclick="document.getElementById('header').innerText = '<DOWNLOADING>';document.getElementsByClassName('loading')[0].classList.add('lds-ripple');">
         </form>
+        <div class="loading"><div></div><div></div></div>
     </center>
 </body>
 </html>
