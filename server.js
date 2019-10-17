@@ -21,21 +21,25 @@ app.get('/post', (req, res) => {
         var name = getFileName();
 
         youtubedl.getInfo(req.query['url'], [], function(err, info) {
-            var ext = info._filename.match(/\.[0-9a-z]+$/i)[0];
+            if (info != null) {
+                var ext = info._filename.match(/\.[0-9a-z]+$/i)[0];
 
-            video.pipe(fs.createWriteStream(path.join('videos/' + name + ext)));
-
-            video.on('error', function(err) {
-                res.send(`<script>alert('THERE IS A ERROR NERD')</script>`);
-            });
-
-            video.on('end', function() {
-                if (req.query['format'] === 'mp3') {
-                    ffmpeg(`videos/${name}${ext}`).on('end', function() {res.send(`<script>window.open('/${name}.mp3', '_self')</script>`);}).saveToFile(`videos/${name}.mp3`);
-                } else {
-                    res.send(`<script>window.open('/${name}${ext}', '_self')</script>`);
-                }
-            });
+                video.pipe(fs.createWriteStream(path.join('videos/' + name + ext)));
+    
+                video.on('error', function(err) {
+                    res.send(`<script>alert('THERE IS A ERROR NERD')</script>`);
+                });
+    
+                video.on('end', function() {
+                    if (req.query['format'] === 'mp3') {
+                        ffmpeg(`videos/${name}${ext}`).on('end', function() {res.send(`<script>window.open('/${name}.mp3', '_self')</script>`);}).saveToFile(`videos/${name}.mp3`);
+                    } else {
+                        res.send(`<script>window.open('/${name}${ext}', '_self')</script>`);
+                    }
+                });
+            } else {
+                res.send(`<script>alert('INVALID STUFF COME ON MAN YOU NERD')</script>`);
+            }
         });
     } else {
         res.send(`<script>alert('INVALID STUFF COME ON MAN YOU NERD')</script>`);
@@ -53,5 +57,7 @@ function getFileName() {
 
     return name;
 }
+
+process.on('uncaughtException', function (err) {});
 
 app.listen(PORT, () => console.log(`Server listening on ${PORT}`));
