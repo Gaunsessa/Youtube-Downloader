@@ -5,7 +5,8 @@
 }
 
 body {
-    background-image: url('/imgs/background.gif');
+    background-image: url('/imgs/ghost.gif');
+    background-size: cover;
     overflow: hidden;
 }
 
