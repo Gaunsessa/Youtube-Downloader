@@ -1,3 +1,11 @@
+@font-face {
+    font-family: 'runescape_quill_8regular';
+    src: url('/fonts/runescape-quill-8-webfont.woff2') format('woff2'),
+        url('/fonts/runescape-quill-8-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
     margin: 0;
     border: 0;
@@ -13,6 +21,27 @@ body {
 #header {
     font-weight: 900;
     font-size: 200px;
-    color: yellow;
+    color: white;
     text-align: center;
+    font-family: 'runescape_quill_8regular';
+}
+
+#urlInp {
+    border: 2px solid black;
+    border-radius: 4px;
+    width: 300px;
+    height: 25px;
+}
+
+#format {
+    border: 2px solid black;
+    border-radius: 4px;
+    height: 25px;
+}
+
+#submitBox {
+    border: 2px solid black;
+    border-radius: 4px;
+    height: 25px;
+    margin: 10px;
 }

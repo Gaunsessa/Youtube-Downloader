@@ -8,15 +8,16 @@
     <title>Downloader</title>
 </head>
 <body>
-    <h1 id="header">DOWNLOADER</h1>
+    <h1 id="header">&#60;DOWNLOADER&&#62;</h1>
     <center>
         <form action="/post">
-            <input type="text" name="url" id="urlInp">
+            <input type="text" name="url" id="urlInp" placeholder="Enter Url">
             <select name="format" id="format">
                 <option value="default">default</option>
                 <option value="mp3">mp3</option>
             </select>
-            <input type="submit" value="submit" onclick="document.body.style.backgroundImage = 'url(\'/imgs/loading.gif\')';document.getElementById('header').innerText = 'DOWNLOADING'">
+            <br>
+            <input type="submit" value="submit" id="submitBox" onclick="document.body.style.backgroundImage = 'url(\'/imgs/loading.gif\')';document.getElementById('header').innerText = 'DOWNLOADING'">
         </form>
     </center>
 </body>
